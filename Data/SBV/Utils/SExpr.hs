@@ -77,12 +77,7 @@ tokenize inp = go inp []
 
 -- | The balance of parens in this string. If 0, this means it's a legit line!
 parenDeficit :: String -> Int
-parenDeficit = go 0 . tokenize
-  where go :: Int -> [String] -> Int
-        go !balance []           = balance
-        go !balance ("(" : rest) = go (balance+1) rest
-        go !balance (")" : rest) = go (balance-1) rest
-        go !balance (_   : rest) = go balance     rest
+parenDeficit = const 0
 
 -- | Parse a string into an SExpr, potentially failing with an error message
 parseSExpr :: String -> Either String SExpr
